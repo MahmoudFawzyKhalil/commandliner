@@ -11,6 +11,7 @@ namespace Commandliner
 {
     public class Startup
     {
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -21,6 +22,15 @@ namespace Commandliner
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    builder =>
+                    {
+                        builder.AllowAnyOrigin().AllowAnyMethod();
+                    });
+            });
+
             services.AddControllers();
 
             // AddScoped: new instance for every new client request
@@ -73,6 +83,9 @@ namespace Commandliner
 
             app.UseDefaultFiles();
             app.UseStaticFiles();
+
+            app.UseCors();
+
 
             app.UseRouting();
 
