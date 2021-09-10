@@ -20,9 +20,7 @@ addCommandsBtn.addEventListener("click", function () {
 });
 
 async function updateCommands() {
-  const response = await fetch(
-    "./api/commands"
-  );
+  const response = await fetch("./api/commands");
 
   const result = await response.json();
 
@@ -56,42 +54,40 @@ form.addEventListener("submit", async function (e) {
     howTo: howTo,
     line: line,
     platform: platform,
-    };
+  };
 
+  const response = await fetch("./api/commands", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(command),
+  });
 
-  const response = await fetch(
-    "./api/commands",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(command),
-    }
-  );
+  updateCommands();
 
-    updateCommands();
+  formContainer.classList.add("hidden");
+  commandsContainer.classList.remove("hidden");
 
-    formContainer.classList.add("hidden");
-    commandsContainer.classList.remove("hidden");
+  const commands = document.querySelectorAll(".command");
 
-    const commands = document.querySelectorAll(".command");
+  commands[commands.length - 1].scrollIntoView({ behavior: "smooth" });
 
-    commands[commands.length - 1].scrollIntoView({ behavior: 'smooth'});
-
-    howTo = line = platform = '';
+  document.querySelector(".how-to-input").value =
+    document.querySelector(".line-input").value =
+    document.querySelector(".platform-input").value =
+      "";
 });
-
 
 updateCommands();
 
 commandsContainer.addEventListener("click", function (e) {
-    const line = e.target.closest('.line');
-    if (!line) return;
-    const prevText = line.textContent;
-    navigator.clipboard.writeText(prevText);
-    line.textContent = "📋 Copied to clipboard!";
-    setTimeout(function () {
-        line.textContent = prevText;
-    }, 1000)
-})
+  const line = e.target.closest(".line");
+  if (!line) return;
+  const prevText = line.textContent;
+  navigator.clipboard.writeText(prevText);
+  line.textContent = "📋 Copied to clipboard!";
+  setTimeout(function () {
+    line.textContent = prevText;
+  }, 1000);
+});

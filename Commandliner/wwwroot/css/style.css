@@ -7,14 +7,16 @@
 }
 
 html {
-    position: relative;
-    min-height: 100vh;
+  height: 100%;
 }
 
 body {
-    font-family: "Space Grotesk", "Courier New", Courier, monospace;
-    background-color: #000;
-    color: #f9fafb;
+  font-family: "Space Grotesk", "Courier New", Courier, monospace;
+  background-color: #000;
+  color: #f9fafb;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
 }
 
 main {
@@ -22,15 +24,13 @@ main {
   margin: 0 auto;
 }
 
-
-
 /* UTILITY CLASSES */
 .hidden {
   display: none;
 }
 
 .scroll {
-    width: 500px;
+  width: 500px;
 }
 
 /* HEADER */
@@ -124,6 +124,7 @@ main {
 
 .line {
   font-family: "Roboto Mono", "Courier New", Courier, monospace;
+  word-break: break-all;
 }
 
 /* FORM */
@@ -133,6 +134,7 @@ form {
   padding: 16px 24px;
   margin-left: 16px;
   margin-right: 16px;
+  margin-bottom: 48px;
 }
 
 label {
@@ -176,24 +178,27 @@ input {
   color: #f9fafb;
 }
 
-
 /* FOOTER */
 footer {
-    text-align: center;
-    color: #00753A;
-    position: absolute;
-    left: 0;
-    bottom: 10px;
-    width: 100%;
-    font-size: 14px;
+  text-align: center;
+  color: #00753a;
+  /* position: absolute;
+  left: 0;
+  bottom: 10px; */
+  width: 100%;
+  font-size: 14px;
+  margin-top: auto;
+  margin-bottom: 8px;
 }
 
-a:link, a:visited {
-    text-decoration: none;
-    color: #00BC5E;
-    transition: color 0.2s;
+a:link,
+a:visited {
+  text-decoration: none;
+  color: #00bc5e;
+  transition: color 0.2s;
 }
 
-a:hover, a:active {
-    color: #f9fafb;
+a:hover,
+a:active {
+  color: #f9fafb;
 }
